@@ -3,7 +3,7 @@ from dash import Dash, html
 from . import state_dropdown, county_dropdown, general_resources, local_resources, death_graph, prescribing_graph
 
 
-def main_layout(app: Dash) -> html.Div:
+def main_layout(app: Dash, data1, data2, data3) -> html.Div:
     return html.Div(
         className="main-div",
         children=[
