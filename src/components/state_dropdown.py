@@ -11,7 +11,7 @@ def render(app: Dash) -> html.Div:
                 id="state-dropdown",
                 options=[{"label": state, "value": state}
                          for state in state_names],
-                placeholder="Select a state",
+                placeholder="Select a State",
                 multi=False,
             )]
     )

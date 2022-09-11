@@ -1,0 +1,23 @@
+.dropdown {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.graphs {
+    justify-content: space-evenly;
+}
+
+.dropdown-bar {
+    width: 500px;
+}
+
+
+/* General Resources Div*/
+.general-resources {
+    border-color: black;
+}
+
+/* Local resources Div */
+.local-resources {
+    border-color: black;
+}
