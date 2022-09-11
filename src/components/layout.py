@@ -1,9 +1,8 @@
-from threading import local
 from dash import Dash, html
-from . import state_dropdown, county_dropdown, general_resources, local_resources, death_graph, prescribing_graph
+from . import overdose_graph, state_dropdown, county_dropdown, general_resources, local_resources, prescribing_graph
 
 
-def main_layout(app: Dash, data1, data2, data3) -> html.Div:
+def main_layout(app: Dash) -> html.Div:
     return html.Div(
         className="main-div",
         children=[
@@ -34,7 +33,7 @@ def main_layout(app: Dash, data1, data2, data3) -> html.Div:
                 className="graphs",
                 children=[
                     prescribing_graph.render(app),
-                    death_graph.render(app),
+                    overdose_graph.render(app),
                 ]
             ),
             # local info
