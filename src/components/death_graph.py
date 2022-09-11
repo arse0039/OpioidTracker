@@ -12,8 +12,8 @@ fig = px.line(
     template='simple_white',
     )
 
-fig.update_traces(line_color='#00695c')
-fig.update_layout(title_text="Fatal Opioid Overdoses By State", title_x=0.5, title_font_color="#712177")
+fig.update_traces(line_color='#527c88')
+fig.update_layout(title_text="Fatal Opioid Overdoses By State", title_x=0.5, title_font_color="#10217d")
 
 def render(app: Dash) -> html.Div:
     return html.Div(

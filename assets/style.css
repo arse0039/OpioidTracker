@@ -5,12 +5,29 @@
 }
 
 body {
-    background-color: #b7c9e2;
+    background-color:#F8F0E3;
 }
 
 
+.card-title{
+    color: #10217d;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li::before {
+    content: "\2022";
+    color: #00695c;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+
 h1 {
-    color: #712177;
+    color: #10217d;
     font-size:35pt;
 }
 

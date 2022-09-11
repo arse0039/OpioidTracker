@@ -1,7 +1,7 @@
 from threading import local
 from dash import Dash, html
 import dash_bootstrap_components as dbc
-from . import state_dropdown, county_dropdown, general_resources, local_resources, death_graph, prescribing_graph, app_title
+from . import state_dropdown, county_dropdown, general_resources, local_resources, death_graph, prescribing_graph, app_title, alternatives
 
 
 def main_layout(app: Dash, data1, data2, data3) -> html.Div:
@@ -28,6 +28,12 @@ def main_layout(app: Dash, data1, data2, data3) -> html.Div:
                         width=6)
                     
             ], className="g-0"),
+                
+            dbc.Row([
+                dbc.Col (
+                    alternatives.render(app)
+                )
+            ])
 
   # test
 
