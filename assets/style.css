@@ -1,20 +1,17 @@
-.dropdown {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.graphs {
-    justify-content: space-evenly;
-}
-
-.dropdown-bar {
-    width: 500px;
-}
-
 
 /* General Resources Div*/
 .general-resources {
     border-color: black;
+}
+
+body {
+    background-color: #b7c9e2;
+}
+
+
+h1 {
+    color: #712177;
+    font-size:35pt;
 }
 
 /* Local resources Div */
