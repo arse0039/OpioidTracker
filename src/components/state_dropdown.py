@@ -1,8 +1,8 @@
 from dash import Dash, html, dcc
+from src.components.state_data import state_names
 
 
 def render(app: Dash) -> html.Div:
-    state_data = ["Alaska", " Oregon", "Test"]
     return html.Div(
         children=[
             html.Div(children="State", className="state-drop-header"),
@@ -10,7 +10,7 @@ def render(app: Dash) -> html.Div:
                 className="dropdown-bar",
                 id="state-dropdown",
                 options=[{"label": state, "value": state}
-                         for state in state_data],
+                         for state in state_names],
                 placeholder="Select a state",
                 multi=False,
             )]

@@ -14,7 +14,7 @@ def main():
     prescribe_data = load_data(PRESCRIBING_DATA)
     app.title = "Opioid Tracker Dashboard"
     app.layout = main_layout(app, fatal_data, non_fatal_data, prescribe_data)
-    app.run(debug=False)
+    app.run(debug=True)
 
 
 if __name__ == "__main__":
