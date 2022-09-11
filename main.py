@@ -9,7 +9,7 @@ PRESCRIBING_DATA = "./data/Medicare_opioid_prescribing_data.csv"
 
 
 def main():
-    app = Dash(__name__, external_stylesheets=[dbc.themes.LUX],
+    app = Dash(__name__, external_stylesheets=[dbc.themes.Lux],
                meta_tags=[{'name': 'viewport',
                            'content': 'width=device-width, initial-scale=1.0'}])
 
