@@ -21,7 +21,7 @@ def render(app: Dash) -> html.Div:
             dcc.Dropdown(
                 className="dropdown-bar",
                 id="county-dropdown",
-                placeholder="Select a county",
+                value="Autauga",
                 multi=False,
             )]
     )

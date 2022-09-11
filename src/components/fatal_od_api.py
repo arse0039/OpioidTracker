@@ -35,5 +35,5 @@ def year_average(graph_data: dict) -> tuple:
     return (years, deaths)
 
 
-test = fatal_data("Kentucky")
-print(year_average(test))
+# test = fatal_data("Kentucky")
+# print(year_average(test))

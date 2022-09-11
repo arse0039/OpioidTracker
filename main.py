@@ -13,7 +13,7 @@ def main():
     non_fatal_data = load_data(NONFATAL_DATA_PATH)
     prescribe_data = load_data(PRESCRIBING_DATA)
     app.title = "Opioid Tracker Dashboard"
-    app.layout = main_layout(app, fatal_data, non_fatal_data, prescribe_data)
+    app.layout = main_layout(app)
     app.run(debug=False)
 
 

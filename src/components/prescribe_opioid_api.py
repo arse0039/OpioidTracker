@@ -1,7 +1,7 @@
 import json
 import requests
 
-def get_filter(state:str, county:str) -> dict:
+def get_year_and_rate(state:str, county:str) -> dict:
     """
     Will return a dictionary that contains the year and 1 year change in opioid prescription rate for the
     entered state and county using the CMS API.
@@ -31,14 +31,19 @@ def get_filter(state:str, county:str) -> dict:
     year_and_rate = {}
     
     for entry in parse_json:
-        if entry["Opioid_Prscrbng_Rate_1Y_Chg"] is not "":
-            year_and_rate[int(entry["Year"])] = float(entry["Opioid_Prscrbng_Rate_1Y_Chg"])
+        if entry["Opioid_Prscrbng_Rate_1Y_Chg"] != "":
+            year_and_rate[(entry["Year"])] = float(entry["Opioid_Prscrbng_Rate_1Y_Chg"])
         else:
             # When there is no data on the 1 year change in opioid prescription rates, mark data as unavailable
-            year_and_rate[int(entry["Year"])] = "Data unavailable"
-    return year_and_rate
+            year_and_rate[(entry["Year"])] = 0
+    years = year_and_rate.keys()
+    rate = year_and_rate.values()
+    if len(years) == 0 or len(rate) == 0:
+        years = [2013, 2014, 2015, 2016, 2017, 2018, 2019]
+        rate = [0 for i in range(len(years))]
+    return (years, rate)
 
 
-
+print(get_year_and_rate("Washington", "King"))
 
 
