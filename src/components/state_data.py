@@ -25,6 +25,3 @@ def county_finder(id):
         real_names.append(name_list[0])
     real_names.sort()
     return real_names
-
-
-print(county_finder('01'))

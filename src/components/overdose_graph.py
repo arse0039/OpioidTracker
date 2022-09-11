@@ -1,19 +1,7 @@
 from dash import Dash, html, dcc
 import plotly.express as px
 from dash.dependencies import Output, Input
-
-
-years = [2019, 2020, 2021]
-
-
-APP_TOKEN = "9eSpPa9ptEvK84kA5ZzQyuP1e"
-
-
-fig = px.line(
-    x=years, y=[1, 3, 2],
-    title="Opioid Overdose Data By State", height=425,
-    labels={'x': 'Year', 'y': 'Deaths'}
-)
+from src.components.fatal_od_api import fatal_data, year_average
 
 
 def render(app: Dash, ) -> html.Div:
@@ -22,10 +10,23 @@ def render(app: Dash, ) -> html.Div:
         Input("state-dropdown", "value")
     )
     def update_state(value):
-        data_api = f"https://data.cdc.gov/resource/xkb8-kh2a.json?state={value}&indicator=Opioids%20(T40.0-T40.4,T40.6)$$app_token={APP_TOKEN}"
+        raw_state_data = fatal_data(value)
+        years, deaths = year_average(raw_state_data)
+        if max(deaths) == 0:
+            fig = px.line(
+                x=years, y=deaths,
+                title="Opioid Overdose Data By State", height=425,
+                labels={'x': 'Year', 'y': 'Deaths'}, range_y=[0, 10]
+            )
+        else:
+            fig = px.line(
+                x=years, y=deaths,
+                title="Opioid Overdose Data By State", height=425,
+                labels={'x': 'Year', 'y': 'Deaths'}
+            )
         return fig
 
     return html.Div(
         className="graph",
-        children=dcc.Graph(figure=fig, id='overdose-graph'),
+        children=dcc.Graph(id='overdose-graph'),
     )
