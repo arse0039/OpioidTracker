@@ -1,7 +1,14 @@
-import requests
+import pandas as pd
 
-state_data = requests.get(
-    'https://api.census.gov/data/2010/dec/sf1?get=NAME&for=state:*').json()
 
-states = [state[0] for state in state_data[1:]]
-print(states)
+test = {
+    'Year': [2018, 2019, 2020],
+    'Non-Fatal': [5, 1, 2],
+    'Fatal': [2, 3, 7]
+}
+
+
+df1 = pd.DataFrame(test)
+
+
+print(df1)

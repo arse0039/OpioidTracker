@@ -2,7 +2,7 @@ from dash import Dash, html
 from . import overdose_graph, state_dropdown, county_dropdown, general_resources, local_resources, prescribing_graph
 
 
-def main_layout(app: Dash) -> html.Div:
+def main_layout(app: Dash, non_fatal_data) -> html.Div:
     return html.Div(
         className="main-div",
         children=[
@@ -33,7 +33,7 @@ def main_layout(app: Dash) -> html.Div:
                 className="graphs",
                 children=[
                     prescribing_graph.render(app),
-                    overdose_graph.render(app),
+                    overdose_graph.render(app, non_fatal_data),
                 ]
             ),
             # local info
