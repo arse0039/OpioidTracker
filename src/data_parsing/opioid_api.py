@@ -1,11 +1,22 @@
-from ast import Dict
 import json
 import requests
 
-def get_filter(state:str, county:str):
+def get_filter(state:str, county:str) -> dict:
     """
     Will return a dictionary that contains the year and 1 year change in opioid prescription rate for the
     entered state and county using the CMS API.
+
+    Parameters
+    ----------
+    state:str
+        state name to search for opioid prescription rate in, must be spelled correctly
+    county:str
+        county name to search for opioid prescription rate in, my be spelled correctly
+
+    Returns
+    -------
+    dict
+        a dictionary containing the the year and the respective 1 year change in opioid prescription rate, if available
     """
     if " " in county:
         temp_list = list(county)
@@ -23,10 +34,11 @@ def get_filter(state:str, county:str):
         if entry["Opioid_Prscrbng_Rate_1Y_Chg"] is not "":
             year_and_rate[int(entry["Year"])] = float(entry["Opioid_Prscrbng_Rate_1Y_Chg"])
         else:
+            # When there is no data on the 1 year change in opioid prescription rates, mark data as unavailable
             year_and_rate[int(entry["Year"])] = "Data unavailable"
     return year_and_rate
 
-print(get_filter("Washington", "King"))
+
 
 
 
