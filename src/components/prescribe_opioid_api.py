@@ -30,7 +30,7 @@ def get_year_and_rate(state:str, county:str) -> dict:
 
     year_and_rate = {}
     
-    for entry in parse_json:
+    for entry in reversed(parse_json):
         if entry["Opioid_Prscrbng_Rate_1Y_Chg"] != "":
             year_and_rate[(entry["Year"])] = float(entry["Opioid_Prscrbng_Rate_1Y_Chg"])
         else:
