@@ -19,7 +19,7 @@ def non_fatal_data(data, state):
         filtered_data = data.loc[mask, :]
         list_values = filtered_data["opioidPercentageChange"].to_list()
         filtered = list(
-            filter(lambda value: value != 'suppressed', list_values))
+            filter(lambda value: value != 'suppressed' and value != 'missing', list_values))
         filtered_to_int = [float(val) for val in filtered]
         if len(filtered_to_int) > 0:
             average_filtered = round(mean(filtered_to_int), 2)
@@ -27,6 +27,6 @@ def non_fatal_data(data, state):
             average_filtered = 0
         yearly_data[str(ele)] = average_filtered
 
-    year = yearly_data.keys()
-    deaths = yearly_data.values()
+    year = list(yearly_data.keys())
+    deaths = list(yearly_data.values())
     return (year, deaths)
