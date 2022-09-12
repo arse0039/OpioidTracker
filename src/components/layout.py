@@ -1,5 +1,6 @@
 from dash import Dash, html
-from . import overdose_graph, state_dropdown, county_dropdown, general_resources, local_resources, prescribing_graph
+import dash_bootstrap_components as dbc
+from . import overdose_graph, state_dropdown, county_dropdown, general_resources, local_resources, prescribing_graph, app_title, alternatives
 
 
 def main_layout(app: Dash) -> html.Div:
@@ -8,42 +9,31 @@ def main_layout(app: Dash) -> html.Div:
         children=[
             # header
             html.Div(
-                children=[
-                    html.H1(app.title, className="title-header"),
-                    html.P(
-                        "Opioids are a class of drugs commonly used in the treatment of pain. According to the CDC, in 2019,\
-                20.4% of adults were loving with chronic pain and 7.4% experienced pain significant enough to \
-                    limit life or work activities. As a result, the prescribing of opioids in America has increased over the \
-                       past 23 years and with that has come an increased risk for addiction and opioid-related overdoses."),
-                    html.P("As prescribing rates and increased and new opioid-class drugs came on the market, the FDA began \
-                taking note of the increase in overdoses and in 2013 issued a letter describing the issue as the 'opioid epidemic'."),
-                    html.P("In 2020, 9.3 million people over the age of 12 misused prescription opioids within the prior year. \
-                During the same year, 75% of all overdose related deaths involved opioids."),
-                    html.Hr(), ],
+                app_title.render(app)
             ),
             # dropdown
-            html.Div(
-                className="dropdown",
-                children=[
-                    state_dropdown.render(app),
-                    county_dropdown.render(app)]
-            ),
+            dbc.Row(children=[
+                    dbc.Col(
+                        state_dropdown.render(app),
+                        width=6),
+                    dbc.Col(
+                        county_dropdown.render(app),
+                        width=6),
+            ], className="g-0"),
             # graphs
+            dbc.Row(children=[
+                    dbc.Col(
+                        dbc.Card(
+                            dbc.CardBody(prescribing_graph.render(app))),
+                        width=6),
+                    dbc.Col(
+                        dbc.Card(
+                            dbc.CardBody(overdose_graph.render(app))),
+                        width=6),
+                    
+            ], className="g-0"),
             html.Div(
-                className="graphs",
-                children=[
-                    prescribing_graph.render(app),
-                    overdose_graph.render(app),
-                ]
-            ),
-            # local info
-            local_resources.render(app),
-            # general info
-            general_resources.render(app),
-            # references?
-            html.Div(
-                'references?',
-                className="dropdown-div",
+                alternatives.render(app),
             ),
         ]
     )
