@@ -1,10 +1,11 @@
 import requests
 from geocode import zip_geocode
+from typing import List
 
 CLINIC_API = "https://findtreatment.samhsa.gov/locator/listing"
 METERS_PER_MILE = 1609.344
 
-def find_clinics(zip: str, distance: float, num_results: int) -> list[dict]:
+def find_clinics(zip: str, distance: float, num_results: int) -> List[dict]:
     """
     Returns clinic data for the nearest num_results clinics to the provided ZIP code
     found within the provided distance in miles.
@@ -39,3 +40,4 @@ def find_clinics(zip: str, distance: float, num_results: int) -> list[dict]:
     resp = requests.post(CLINIC_API, headers=headers, data=data).json()
     return resp["rows"]
 
+print(find_clinics("98031", 20, 5))

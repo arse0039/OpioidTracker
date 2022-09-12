@@ -1,8 +1,9 @@
+from typing import Tuple
 import requests
 
 GEOCODE_API = "https://geocode.xyz/"
 
-def zip_geocode(zip: str) -> tuple[str, str]:
+def zip_geocode(zip: str) -> Tuple[str, str]:
     """
     Returns the latitude and longitude of the provided ZIP code.
 
