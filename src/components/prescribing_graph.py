@@ -17,14 +17,15 @@ def render(app: Dash) -> html.Div:
             labels={'x': 'Year', 'y': 'Percentage Rate'},
             template='simple_white'
         )
-
+        fig.update_xaxes(tickangle=45)
         fig.update_traces(line_color='#527c88')
-        fig.update_layout(title_text="Opioid Prescriptions by State and County", title_x=0.5, title_font_color="#10217d")
+        fig.update_layout(title_text=f"Opioid Prescriptions in {county}, {state}", title_x=0.5, title_font_color="#10217d")
         return fig
 
     return html.Div(
         className="graph",
-        children=dcc.Graph(id='prescribing-graph'),
+        children=dcc.Graph(id='prescribing-graph',
+                            config={'displayModeBar':False}),
     )
 
 #test

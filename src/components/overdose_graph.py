@@ -4,6 +4,8 @@ from dash.dependencies import Output, Input
 from src.components.fatal_od_api import fatal_data, year_average
 from src.components.state_abbreviations import abbreviations
 from src.components.nonfatal_parser import non_fatal_data
+import plotly.graph_objects as go
+
 
 
 def render(app: Dash, nf_data) -> html.Div:
@@ -16,27 +18,21 @@ def render(app: Dash, nf_data) -> html.Div:
         years, deaths = year_average(raw_state_data)
         state_abbr = abbreviations[value]
         nf_year, nf_od = non_fatal_data(nf_data, state_abbr)
-        # if max(deaths) == 0:
-        #     fig = px.line(
-        #         x=years, y=deaths,
-        #         title=f"Opioid Overdose Data for {value}", height=425,
-        #         labels={'x': 'Year', 'y': 'Deaths'}, range_y=[0, 10]
-        #     )
-        # else:
+
+
         fig = px.line(
-            x=years, y=deaths,
-            title=f"Opioid Overdose Data By {value}", height=425,
-            labels={'x': 'Year', 'y': '% Change in Overdose Events'}
+            template='simple_white',
         )
 
-        fig.update_layout(legend_title="Overdose Type")
-        # fig.update_traces(name="Fatal")
-
-        fig.add_scatter(x=nf_year, y=nf_od, name="Non-Fatal")
-
+        fig.update_xaxes(tickangle=45, title="Year")
+        fig.update_yaxes(title='% Change in Overdose Events')
+        fig.update_traces(line_color='#527c88')
+        fig.update_layout(title=f"Opioid Overdoses in {value}", title_x=0.5, title_font_color="#10217d")
+        fig.add_scatter(x=nf_year, y=nf_od, name="Non-Fatal", line_color='#527c88')
+        fig.add_scatter(x=years, y=deaths, name="Fatal", line_color='#10217d')
         return fig
 
     return html.Div(
         className="graph",
-        children=dcc.Graph(id='overdose-graph'),
+        children=dcc.Graph(id='overdose-graph', config={'displayModeBar':False}),
     )
