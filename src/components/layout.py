@@ -1,10 +1,9 @@
 from dash import Dash, html
 import dash_bootstrap_components as dbc
-from . import overdose_graph, state_dropdown, county_dropdown, general_resources, local_resources, prescribing_graph, app_title, alternatives
+from . import overdose_graph, app_title, state_dropdown, alternatives, county_dropdown, general_resources, local_resources, prescribing_graph
 
-
-def main_layout(app: Dash) -> html.Div:
-    return html.Div(
+def main_layout(app: Dash, non_fatal_data) -> html.Div:
+    return html.Div(dbc.Container(
         className="main-div",
         children=[
             # header
@@ -14,10 +13,12 @@ def main_layout(app: Dash) -> html.Div:
             # dropdown
             dbc.Row(children=[
                     dbc.Col(
-                        state_dropdown.render(app),
+                        dbc.Card(
+                            dbc.CardBody(state_dropdown.render(app))),
                         width=6),
                     dbc.Col(
-                        county_dropdown.render(app),
+                        dbc.Card(
+                        dbc.CardBody(county_dropdown.render(app))),
                         width=6),
             ], className="g-0"),
             # graphs
@@ -28,7 +29,7 @@ def main_layout(app: Dash) -> html.Div:
                         width=6),
                     dbc.Col(
                         dbc.Card(
-                            dbc.CardBody(overdose_graph.render(app))),
+                            dbc.CardBody(overdose_graph.render(app, non_fatal_data))),
                         width=6),
                     
             ], className="g-0"),
@@ -37,3 +38,4 @@ def main_layout(app: Dash) -> html.Div:
             ),
         ]
     )
+)

@@ -8,6 +8,17 @@ body {
     background-color:#F8F0E3;
 }
 
+.state-drop-header{
+    text-align: center;
+    font-weight: bold;
+    color: #00695c;
+}
+
+.county-drop-header {
+    text-align: center;
+    font-weight: bold;
+    color:#00695c;
+}
 
 .card-title{
     color: #10217d;

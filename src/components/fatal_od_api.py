@@ -5,8 +5,8 @@ APP_TOKEN = "9eSpPa9ptEvK84kA5ZzQyuP1e"
 # https://data.cdc.gov/resource/xkb8-kh2a.json?state_name=Kansas&indicator=Opioids%20(T40.0-T40.4,T40.6)$$app_token=9eSpPa9ptEvK84kA5ZzQyuP1e
 
 
-def fatal_data(value: str) -> dict:
-    data_api = f"https://data.cdc.gov/resource/xkb8-kh2a.json?state_name={value}&indicator=Opioids%20(T40.0-T40.4,T40.6)"
+def fatal_data(state: str) -> dict:
+    data_api = f"https://data.cdc.gov/resource/xkb8-kh2a.json?state_name={state}&indicator=Opioids%20(T40.0-T40.4,T40.6)"
     state_fatal = requests.get(data_api).json()
     graph_data = {}
     for key in state_fatal:
@@ -27,13 +27,14 @@ def year_average(graph_data: dict) -> tuple:
         value = graph_data[item]
         value = int(mean(value))
         graph_data[item] = value
-    years = graph_data.keys()
-    deaths = graph_data.values()
+    years = list(graph_data.keys())
+    deaths = list(graph_data.values())
+    death_percent_change = [0]
+    for i in range(1, len(deaths)):
+        change = ((deaths[i] - deaths[i-1])/deaths[i-1])*100
+        death_percent_change.append(round(change, 2))
     if len(years) == 0:
-        years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
-        deaths = [0 for i in range(len(years))]
-    return (years, deaths)
-
-
-# test = fatal_data("Kentucky")
-# print(year_average(test))
+        years = ['2015', '2016', '2017', '2018',
+                 '2019', '2020', '2021', '2022']
+        death_percent_change = [0 for i in range(len(years))]
+    return (years, death_percent_change)
