@@ -13,7 +13,7 @@ def main():
                            'content': 'width=device-width, initial-scale=1.0'}])
 
     non_fatal_data = load_data(NONFATAL_DATA_PATH)
-    prescribe_data = load_data(PRESCRIBING_DATA)
+    #prescribe_data = load_data(PRESCRIBING_DATA)
     app.title = "Opioid Tracker Dashboard"
     app.layout = main_layout(app, non_fatal_data)
     app.run(debug=False)
