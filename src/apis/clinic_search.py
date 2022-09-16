@@ -42,7 +42,9 @@ def find_clinics(zip: str, distance: float, num_results: int) -> list[dict]:
             name_one = clinic['name1']
             name_two = clinic['name2']
             slot = int(clinic['_irow']) - 1
-            clinic_data[slot]['name'] = name_one + name_two
+            clinic_data[slot]['name'] = name_one + " " + name_two
             clinic_data[slot]['phone'] = clinic['phone']
             clinic_data[slot]['website'] = clinic['website']
     return clinic_data
+
+print(find_clinics("98031", 20, 5))
