@@ -34,8 +34,15 @@ def find_clinics(zip: str, distance: float, num_results: int) -> list[dict]:
         "limitValue": METERS_PER_MILE * distance,
         "sort": "0"
     }
-
     resp = requests.post(CLINIC_API, headers=headers, data=data).json()
-    return resp["rows"]
-
-print(find_clinics("98031", 20, 5))
+    list_dic_data = resp["rows"]
+    clinic_data = [{} for i in range(num_results)]
+    for clinic in list_dic_data:
+        if '_irow' in clinic:
+            name_one = clinic['name1']
+            name_two = clinic['name2']
+            slot = int(clinic['_irow']) - 1
+            clinic_data[slot]['name'] = name_one + name_two
+            clinic_data[slot]['phone'] = clinic['phone']
+            clinic_data[slot]['website'] = clinic['website']
+    return clinic_data

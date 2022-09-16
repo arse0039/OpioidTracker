@@ -28,8 +28,8 @@ def render(app: Dash, nf_data) -> html.Div:
         fig.update_yaxes(title='% Change in Overdose Events')
         fig.update_traces(line_color='#527c88')
         fig.update_layout(title=f"Opioid Overdoses in {value}", title_x=0.5, title_font_color="#10217d")
-        fig.add_scatter(x=nf_year, y=nf_od, name="Non-Fatal", line_color='#527c88')
         fig.add_scatter(x=years, y=deaths, name="Fatal", line_color='#10217d')
+        fig.add_scatter(x=nf_year, y=nf_od, name="Non-Fatal", line_color='#527c88')
         return fig
 
     return html.Div(

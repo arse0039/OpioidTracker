@@ -3,6 +3,9 @@ import dash_bootstrap_components as dbc
 from src.components.layout import main_layout
 from src.data_parsing.data_parser import load_data
 
+import sys
+print(sys.executable)
+
 NONFATAL_DATA_PATH = "./data/Non-Fatal-Overdose-Data.csv"
 PRESCRIBING_DATA = "./data/Medicare_opioid_prescribing_data.csv"
 

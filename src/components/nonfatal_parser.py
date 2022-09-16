@@ -27,6 +27,6 @@ def non_fatal_data(data, state):
             average_filtered = 0
         yearly_data[str(ele)] = average_filtered
 
-    year = list(yearly_data.keys())
+    year = list(sorted(yearly_data.keys()))
     deaths = list(yearly_data.values())
     return (year, deaths)

@@ -27,7 +27,8 @@ def year_average(graph_data: dict) -> tuple:
         value = graph_data[item]
         value = int(mean(value))
         graph_data[item] = value
-    years = list(graph_data.keys())
+    
+    years = list(sorted(graph_data.keys()))
     deaths = list(graph_data.values())
     death_percent_change = [0]
     for i in range(1, len(deaths)):
