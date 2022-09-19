@@ -46,5 +46,3 @@ def find_clinics(zip: str, distance: float, num_results: int) -> list[dict]:
             clinic_data[slot]['phone'] = clinic['phone']
             clinic_data[slot]['website'] = clinic['website']
     return clinic_data
-
-print(find_clinics("98031", 20, 5))

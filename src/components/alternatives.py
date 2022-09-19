@@ -41,14 +41,17 @@ def render(app: Dash) -> html.Div:
         dbc.Card(
             dbc.CardBody(
                 [
-                    html.H5("Local Resources", className="card-title text-center mb-4 mt-4"),
+                    html.H5("National Resources", className="card-title text-center mb-4 mt-4"),
                     html.Ul([
-                        html.Li(html.Link("https://www.hhs.gov/opioids/")),
-                        html.Li(html.Link("https://scdhec.gov/opioid-epidemic")),
-                        html.Li(html.Link("https://www.cdc.gov/drugoverdose/featured-topics/treatment-recovery.html"))
+                        html.Li(create_link("https://www.hhs.gov/opioids/")),
+                        html.Li(create_link("https://scdhec.gov/opioid-epidemic")),
+                        html.Li(create_link("https://www.cdc.gov/drugoverdose/featured-topics/treatment-recovery.html"))
                     ])
                 ]
             )
         )
     ])
 )
+
+def create_link(url):
+    return html.A(html.P(str(url)), href=url)
